@@ -1,13 +1,13 @@
-import { Layout } from "antd";
+import { AppBar, Toolbar } from "@mui/material";
 import styles from "./styles.module.scss";
 import { RepositorySearch } from "../../features/RepositorySearch/RepositorySearch";
 
-const { Header: AntdHeader } = Layout;
-
 export const Header = () => {
   return (
-    <AntdHeader className={styles.header}>
-      <RepositorySearch />
-    </AntdHeader>
+    <AppBar position="static" className={styles.header}>
+      <Toolbar>
+        <RepositorySearch />
+      </Toolbar>
+    </AppBar>
   );
 };

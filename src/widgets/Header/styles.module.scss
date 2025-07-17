@@ -1,4 +1,4 @@
-.header {
+.header.header {
   grid-area: header;
 
   background-color: #00838f;
@@ -8,4 +8,8 @@
   align-items: center;
 
   padding: 0 32px;
+
+  :global(.MuiToolbar-root) {
+    padding: 0;
+  }
 }

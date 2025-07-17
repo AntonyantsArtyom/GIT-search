@@ -1,6 +1,6 @@
-import { Button, Input } from "antd";
-import styles from "./styles.module.scss";
+import { Box, Button, TextField } from "@mui/material";
 import { useState, type ChangeEventHandler } from "react";
+import styles from "./styles.module.scss";
 
 export const RepositorySearch = () => {
   const [repository, setRepository] = useState("");
@@ -8,9 +8,11 @@ export const RepositorySearch = () => {
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => setRepository(e.target.value);
 
   return (
-    <div className={styles.search}>
-      <Input id="repository" className={styles.input} placeholder="Введите поисковый запрос" value={repository} onChange={handleChange} />
-      <Button className={styles.button}>ИСКАТЬ</Button>
-    </div>
+    <Box className={styles.search}>
+      <TextField id="repository" classes={{ root: styles.input }} placeholder="Введите поисковый запрос" value={repository} onChange={handleChange} />
+      <Button className={styles.button} variant="contained">
+        ИСКАТЬ
+      </Button>
+    </Box>
   );
 };
