@@ -9,8 +9,9 @@ import { setRecordsPerPage } from "../../entities/Repository/model/repositoriesS
 export const TablePagination = () => {
   const dispatch = useDispatch();
 
-  const { recordsPerPage } = useSelector((state: RootState) => state.repositories);
+  const { recordsPerPage, repositoryCount } = useSelector((state: RootState) => state.repositories);
   const handleChange = (event: SelectChangeEvent) => dispatch(setRecordsPerPage(Number(event.target.value)));
+  const totalPages = Math.ceil(repositoryCount / recordsPerPage);
 
   return (
     <Box className={styles.pagination}>
@@ -25,7 +26,7 @@ export const TablePagination = () => {
         </Select>
       </Box>
 
-      <Typography variant="body1">1 из 4</Typography>
+      <Typography variant="body1">1 из {totalPages}</Typography>
       <Box>
         <ChevronLeftIcon className={styles.nav_icon} />
         <ChevronRightIcon className={styles.nav_icon} />
