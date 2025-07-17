@@ -1,0 +1,11 @@
+.header {
+  grid-area: header;
+
+  background-color: #00838f;
+  height: 80px;
+
+  display: grid;
+  align-items: center;
+
+  padding: 0;
+}
