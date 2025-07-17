@@ -6,7 +6,7 @@ import { HelloMessage } from "../../shared/HelloMessage/HelloMessage";
 import { NotFountMessage } from "../../shared/NotFountMessage/NotFountMessage";
 import { LoadingMessage } from "../../shared/LoadingMessage/HelloMessage";
 import { TablePagination } from "../../features/TablePagination/TablePagination";
-import { useLazySearchReposQuery } from "../../entities/Repository/api/useSearchReposQuery";
+import { useLazySearchReposQuery } from "../../entities/Repository/api/RepositoryQueries";
 import { setCurrentPageAndDirection, setRepositories } from "../../entities/Repository/model/repositoriesSlice";
 import styles from "./styles.module.scss";
 import { RepositoryFullInfo } from "../../entities/Repository/UI/RepositoryFullInfo";

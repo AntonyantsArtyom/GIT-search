@@ -10,6 +10,15 @@ export type Repository = {
   primaryLanguage?: { name: string } | null;
 };
 
+export type RepositoryDetails = {
+  id: string;
+  name: string;
+  stargazerCount: number;
+  primaryLanguage?: { name: string } | null;
+  languages: { name: string }[];
+  licenseInfo?: { name: string; spdxId: string } | null;
+};
+
 export interface RepositoriesState {
   recordsPerPage: number;
   currentPage: number;
