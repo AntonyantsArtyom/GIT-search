@@ -1,0 +1,21 @@
+.search {
+  display: grid;
+  grid-template-columns: minmax(150px, 900px) 100px;
+  gap: 10px;
+
+  .input {
+    height: 42px;
+
+    &::placeholder {
+      color: #828282;
+      font-style: italic;
+    }
+  }
+
+  .button {
+    height: 42px;
+    background: #2196f3;
+    color: #ffffff;
+    border-color: #2196f3;
+  }
+}
