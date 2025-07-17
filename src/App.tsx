@@ -1,15 +1,15 @@
 import { Provider } from "react-redux";
 import { Layout } from "./AppLyaout";
 import { store } from "./store";
+import { RepositoriesPageContent } from "./widgets/RepositoriesPageContent/RepositoriesPageContent";
 
 import "./App.scss";
-import { RepositoryList } from "./entities/Repository/UI/RepositoryList";
 
 function App() {
   return (
     <Provider store={store}>
       <Layout>
-        <RepositoryList />
+        <RepositoriesPageContent />
       </Layout>
     </Provider>
   );

@@ -2,7 +2,7 @@ import { Box, Button, TextField } from "@mui/material";
 import { useEffect, useState, type ChangeEventHandler } from "react";
 import styles from "./styles.module.scss";
 import { useDispatch } from "react-redux";
-import { setRepositories } from "../../entities/Repository/model/repositoriesSlice";
+import { setIsLoading, setRepositories } from "../../entities/Repository/model/repositoriesSlice";
 import { useLazySearchReposQuery } from "../../entities/Repository/api/useSearchReposQuery";
 
 export const RepositorySearch = () => {
@@ -13,7 +13,11 @@ export const RepositorySearch = () => {
     setRepository(e.target.value);
   };
 
-  const [triggerSearch, { data }] = useLazySearchReposQuery();
+  const [triggerSearch, { data, isFetching }] = useLazySearchReposQuery();
+
+  useEffect(() => {
+    dispatch(setIsLoading(isFetching));
+  }, [isFetching]);
 
   useEffect(() => {
     if (data) {

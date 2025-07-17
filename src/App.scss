@@ -9,13 +9,14 @@ html {
 }
 
 #root {
-  min-height: 100dvh;
+  height: 100dvh;
   display: grid;
+  overflow: hidden;
   grid-template-columns: 1fr;
   grid-template-rows:
-    min-content
-    1fr
-    min-content;
+    80px
+    calc(100dvh - 80px - 32px)
+    32px;
   grid-template-areas:
     "header"
     "page_content"
@@ -24,4 +25,5 @@ html {
 
 .page_content {
   grid-area: page_content;
+  overflow-y: scroll;
 }

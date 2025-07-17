@@ -7,9 +7,11 @@ export type Repository = {
   updatedAt: string;
   description?: string;
   licenseInfo?: { name: string } | null;
+  primaryLanguage?: { name: string } | null;
 };
 
 export interface RepositoriesState {
+  isLoading: boolean;
   repositories: Repository[];
   repositoryCount: number;
   pageInfo: {
