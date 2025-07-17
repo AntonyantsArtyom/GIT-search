@@ -1,0 +1,31 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+
+  padding: 0 32px;
+  justify-content: flex-end;
+  padding-right: 20px;
+}
+
+.nav_icon.nav_icon {
+  width: 48px;
+  height: 48px;
+  padding: 12px;
+  cursor: pointer;
+}
+
+.count {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.select {
+  :global(.MuiSelect-select) {
+    padding: 0px;
+  }
+  :global(.MuiOutlinedInput-notchedOutline) {
+    display: none;
+  }
+}

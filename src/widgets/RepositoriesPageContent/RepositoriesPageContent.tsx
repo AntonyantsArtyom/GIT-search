@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { HelloMessage } from "../../shared/HelloMessage/HelloMessage";
 import { NotFountMessage } from "../../shared/NotFountMessage/NotFountMessage";
 import { LoadingMessage } from "../../shared/LoadingMessage/HelloMessage";
+import { TablePagination } from "../../features/TablePagination/TablePagination";
 
 export const RepositoriesPageContent = () => {
   const [isHelloMessage, setIsHelloMessage] = useState(true);
@@ -26,7 +27,12 @@ export const RepositoriesPageContent = () => {
     if (!isHelloMessage && !repositories.length) {
       return <NotFountMessage />;
     }
-    return <RepositoryList />;
+    return (
+      <div>
+        <RepositoryList />
+        <TablePagination />
+      </div>
+    );
   }, [isHelloMessage, repositories, isLoading]);
 
   return <>{BlockForRender}</>;

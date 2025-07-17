@@ -43,7 +43,7 @@ export const RepositorySearch = () => {
 
   return (
     <Box className={styles.search}>
-      <TextField id="repository" classes={{ root: styles.input }} placeholder="Введите поисковый запрос" value={repository} onChange={handleChange} />
+      <TextField autoComplete="off" id="repository" classes={{ root: styles.input }} placeholder="Введите поисковый запрос" value={repository} onChange={handleChange} />
       <Button className={styles.button} variant="contained" onClick={handleSearch}>
         ИСКАТЬ
       </Button>
