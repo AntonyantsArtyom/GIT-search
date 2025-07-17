@@ -11,6 +11,8 @@ export type Repository = {
 };
 
 export interface RepositoriesState {
+  recordsPerPage: number;
+  repositoryName: string;
   isLoading: boolean;
   repositories: Repository[];
   repositoryCount: number;

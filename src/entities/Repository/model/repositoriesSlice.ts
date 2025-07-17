@@ -2,6 +2,8 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { RepositoriesState, Repository } from "../types/repositiry.types";
 
 const initialState: RepositoriesState = {
+  recordsPerPage: 10,
+  repositoryName: "",
   isLoading: false,
   repositories: [],
   repositoryCount: 0,
@@ -30,19 +32,15 @@ export const repositoriesSlice = createSlice({
       state.repositoryCount = action.payload.repositoryCount;
       state.pageInfo = action.payload.pageInfo;
     },
-    clearRepositories: (state) => {
-      state.repositories = [];
-      state.repositoryCount = 0;
-      state.pageInfo = {
-        hasNextPage: false,
-        endCursor: null,
-      };
+
+    setRecordsPerPage: (state, action: PayloadAction<number>) => {
+      state.recordsPerPage = action.payload;
     },
-    setIsLoading: (state, action: PayloadAction<boolean>) => {
-      state.isLoading = action.payload;
+    setRepositoryName: (state, action: PayloadAction<string>) => {
+      state.repositoryName = action.payload;
     },
   },
 });
 
-export const { setRepositories, clearRepositories, setIsLoading } = repositoriesSlice.actions;
+export const { setRepositories, setRecordsPerPage, setRepositoryName } = repositoriesSlice.actions;
 export const repositoriesReducer = repositoriesSlice.reducer;
