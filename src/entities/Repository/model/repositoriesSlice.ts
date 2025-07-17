@@ -9,6 +9,7 @@ const initialState: RepositoriesState = {
   isLoading: false,
   repositories: [],
   repositoryCount: 0,
+  repositoryDetailsId: null,
   pageInfo: {
     hasNextPage: false,
     hasPreviousPage: false,
@@ -45,8 +46,8 @@ export const repositoriesSlice = createSlice({
     setRepositoryName: (state, action: PayloadAction<string>) => {
       state.repositoryName = action.payload;
     },
-    setPaginationDirection: (state, action: PayloadAction<"forward" | "backward">) => {
-      state.paginationDirection = action.payload;
+    setRepositoryDetailsId: (state, action: PayloadAction<string | null>) => {
+      state.repositoryDetailsId = action.payload;
     },
     setCurrentPageAndDirection: (state, action: PayloadAction<number>) => {
       state.paginationDirection = state.currentPage > action.payload ? "backward" : "forward";
@@ -55,5 +56,5 @@ export const repositoriesSlice = createSlice({
   },
 });
 
-export const { setRepositories, setRecordsPerPage, setRepositoryName, setPaginationDirection, setCurrentPageAndDirection } = repositoriesSlice.actions;
+export const { setRepositories, setRecordsPerPage, setRepositoryName, setCurrentPageAndDirection, setRepositoryDetailsId } = repositoriesSlice.actions;
 export const repositoriesReducer = repositoriesSlice.reducer;

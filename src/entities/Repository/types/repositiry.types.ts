@@ -18,6 +18,7 @@ export interface RepositoriesState {
   isLoading: boolean;
   repositories: Repository[];
   repositoryCount: number;
+  repositoryDetailsId?: string | null;
   pageInfo: {
     hasNextPage: boolean;
     hasPreviousPage: boolean;

@@ -8,10 +8,12 @@ import { LoadingMessage } from "../../shared/LoadingMessage/HelloMessage";
 import { TablePagination } from "../../features/TablePagination/TablePagination";
 import { useLazySearchReposQuery } from "../../entities/Repository/api/useSearchReposQuery";
 import { setCurrentPageAndDirection, setRepositories } from "../../entities/Repository/model/repositoriesSlice";
+import styles from "./styles.module.scss";
+import { RepositoryFullInfo } from "../../entities/Repository/UI/RepositoryFullInfo";
 
 export const RepositoriesPageContent = () => {
   const [isHelloMessage, setIsHelloMessage] = useState(true);
-  const { repositories, repositoryName, recordsPerPage, paginationDirection, pageInfo, currentPage } = useSelector((state: RootState) => state.repositories);
+  const { repositories, repositoryName, recordsPerPage, paginationDirection, pageInfo, currentPage, repositoryDetailsId } = useSelector((state: RootState) => state.repositories);
   const dispatch = useDispatch();
 
   const [triggerSearch, { data, isFetching }] = useLazySearchReposQuery();
@@ -81,12 +83,15 @@ export const RepositoriesPageContent = () => {
       return <NotFountMessage />;
     }
     return (
-      <div>
-        <RepositoryList />
-        <TablePagination />
+      <div className={styles.resositories_content}>
+        <div>
+          <RepositoryList />
+          <TablePagination />
+        </div>
+        <RepositoryFullInfo />
       </div>
     );
-  }, [isHelloMessage, repositories, isFetching]);
+  }, [isHelloMessage, repositories, isFetching, repositoryDetailsId]);
 
   return <>{BlockForRender}</>;
 };

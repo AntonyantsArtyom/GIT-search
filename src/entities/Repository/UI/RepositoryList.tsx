@@ -1,10 +1,14 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../../store";
 import styles from "./styles.module.scss";
+import { setRepositoryDetailsId } from "../model/repositoriesSlice";
 
 export const RepositoryList = () => {
   const { repositories } = useSelector((state: RootState) => state.repositories);
+  const dispatch = useDispatch();
+
+  const handleRowClick = (id: string) => dispatch(setRepositoryDetailsId(id));
 
   return (
     <div className={styles.listContainer}>
@@ -22,7 +26,7 @@ export const RepositoryList = () => {
           </TableHead>
           <TableBody>
             {repositories.map((repository) => (
-              <TableRow key={repository.id}>
+              <TableRow key={repository.id} onClick={() => handleRowClick(repository.id)} hover>
                 <TableCell>{repository.name}</TableCell>
                 <TableCell>{repository.primaryLanguage?.name || "—"}</TableCell>
                 <TableCell>{repository.forkCount}</TableCell>
