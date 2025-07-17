@@ -1,8 +1,18 @@
-import "./App.scss";
+import { Provider } from "react-redux";
 import { Layout } from "./AppLyaout";
+import { store } from "./store";
+
+import "./App.scss";
+import { RepositoryList } from "./entities/UI/RepositoryList";
 
 function App() {
-  return <Layout>HELLO WORLD</Layout>;
+  return (
+    <Provider store={store}>
+      <Layout>
+        <RepositoryList />
+      </Layout>
+    </Provider>
+  );
 }
 
 export default App;
