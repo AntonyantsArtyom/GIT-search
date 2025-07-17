@@ -1,4 +1,4 @@
-import { api } from "../../api";
+import { api } from "../../../api";
 import { SEARCH_REPOS_QUERY } from "./queries/searchRepos.query";
 
 export const reposApi = api.injectEndpoints({

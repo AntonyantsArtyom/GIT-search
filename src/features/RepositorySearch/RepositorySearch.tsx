@@ -1,9 +1,9 @@
 import { Box, Button, TextField } from "@mui/material";
 import { useEffect, useState, type ChangeEventHandler } from "react";
 import styles from "./styles.module.scss";
-import { useLazySearchReposQuery } from "../../entities/api/useSearchReposQuery";
 import { useDispatch } from "react-redux";
-import { setRepositories } from "../../entities/model/repositoriesSlice";
+import { setRepositories } from "../../entities/Repository/model/repositoriesSlice";
+import { useLazySearchReposQuery } from "../../entities/Repository/api/useSearchReposQuery";
 
 export const RepositorySearch = () => {
   const dispatch = useDispatch();

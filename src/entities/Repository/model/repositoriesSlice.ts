@@ -1,24 +1,5 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-
-type Repository = {
-  id: string;
-  name: string;
-  language: string;
-  stargazerCount: number;
-  forkCount: number;
-  updatedAt: string;
-  description?: string;
-  licenseInfo?: { name: string } | null;
-};
-
-interface RepositoriesState {
-  repositories: Repository[];
-  repositoryCount: number;
-  pageInfo: {
-    hasNextPage: boolean;
-    endCursor: string | null;
-  };
-}
+import type { RepositoriesState, Repository } from "../types/repositiry.types";
 
 const initialState: RepositoriesState = {
   repositories: [],

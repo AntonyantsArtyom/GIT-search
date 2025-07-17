@@ -3,7 +3,7 @@ import { Layout } from "./AppLyaout";
 import { store } from "./store";
 
 import "./App.scss";
-import { RepositoryList } from "./entities/UI/RepositoryList";
+import { RepositoryList } from "./entities/Repository/UI/RepositoryList";
 
 function App() {
   return (
