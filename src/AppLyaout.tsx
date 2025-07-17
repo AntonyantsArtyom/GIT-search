@@ -5,7 +5,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <Header />
-      {children}
+      <div className="page_content">{children}</div>
       <Footer />
     </>
   );
