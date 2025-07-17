@@ -12,12 +12,16 @@ export type Repository = {
 
 export interface RepositoriesState {
   recordsPerPage: number;
+  currentPage: number;
+  paginationDirection: "forward" | "backward";
   repositoryName: string;
   isLoading: boolean;
   repositories: Repository[];
   repositoryCount: number;
   pageInfo: {
     hasNextPage: boolean;
+    hasPreviousPage: boolean;
+    startCursor: string | null;
     endCursor: string | null;
   };
 }

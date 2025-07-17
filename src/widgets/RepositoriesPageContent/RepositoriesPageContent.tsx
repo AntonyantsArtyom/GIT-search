@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { RepositoryList } from "../../entities/Repository/UI/RepositoryList";
 import type { RootState } from "../../store";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,20 +7,14 @@ import { NotFountMessage } from "../../shared/NotFountMessage/NotFountMessage";
 import { LoadingMessage } from "../../shared/LoadingMessage/HelloMessage";
 import { TablePagination } from "../../features/TablePagination/TablePagination";
 import { reposApi, useLazySearchReposQuery } from "../../entities/Repository/api/useSearchReposQuery";
-import { setRepositories } from "../../entities/Repository/model/repositoriesSlice";
+import { setCurrentPageAndDirection, setPaginationDirection, setRepositories } from "../../entities/Repository/model/repositoriesSlice";
 
 export const RepositoriesPageContent = () => {
-  const [isHelloMessage, setIsHelloMessage] = useState(true);
-  const { repositories, repositoryName, recordsPerPage } = useSelector((state: RootState) => state.repositories);
+  const [isHelloMessage, setIsHelloMessage] = useState(false);
+  const { repositories, repositoryName, recordsPerPage, paginationDirection, pageInfo, currentPage } = useSelector((state: RootState) => state.repositories);
   const dispatch = useDispatch();
 
-  const isFetching = useSelector(
-    (state: RootState) =>
-      reposApi.endpoints.searchRepos.select({
-        query: repositoryName,
-        first: recordsPerPage,
-      })(state)?.isLoading
-  );
+  const isFetching = false;
 
   const [triggerSearch, { data }] = useLazySearchReposQuery();
 
@@ -40,15 +34,39 @@ export const RepositoriesPageContent = () => {
   }, [data, dispatch]);
 
   useEffect(() => {
-    if (!repositoryName) return;
-    triggerSearch({ query: repositoryName, first: recordsPerPage });
-  }, [recordsPerPage, repositoryName]);
-
-  useEffect(() => {
     if (isFetching) {
       setIsHelloMessage(false);
     }
   }, [isFetching]);
+
+  useEffect(() => {
+    dispatch(setCurrentPageAndDirection(1));
+  }, [repositoryName, recordsPerPage]);
+
+  const prevRepositoryName = useRef(repositoryName);
+  const prevRecordsPerPage = useRef(recordsPerPage);
+
+  useEffect(() => {
+    if (prevRepositoryName.current !== repositoryName || prevRecordsPerPage.current !== recordsPerPage) {
+      prevRepositoryName.current = repositoryName;
+      prevRecordsPerPage.current = recordsPerPage;
+      dispatch(setCurrentPageAndDirection(1));
+    }
+
+    if (paginationDirection === "forward") {
+      triggerSearch({
+        query: repositoryName,
+        first: recordsPerPage,
+        after: pageInfo.endCursor ?? null,
+      });
+    } else if (paginationDirection === "backward") {
+      triggerSearch({
+        query: repositoryName,
+        last: recordsPerPage,
+        before: pageInfo.startCursor ?? null,
+      });
+    }
+  }, [repositoryName, recordsPerPage, currentPage]);
 
   const BlockForRender = useMemo(() => {
     if (isHelloMessage) {

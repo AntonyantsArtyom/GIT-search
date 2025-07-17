@@ -4,14 +4,17 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import styles from "./styles.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../store";
-import { setRecordsPerPage } from "../../entities/Repository/model/repositoriesSlice";
+import { setCurrentPageAndDirection, setRecordsPerPage } from "../../entities/Repository/model/repositoriesSlice";
 
 export const TablePagination = () => {
   const dispatch = useDispatch();
 
-  const { recordsPerPage, repositoryCount } = useSelector((state: RootState) => state.repositories);
+  const { recordsPerPage, repositoryCount, currentPage } = useSelector((state: RootState) => state.repositories);
   const handleChange = (event: SelectChangeEvent) => dispatch(setRecordsPerPage(Number(event.target.value)));
   const totalPages = Math.ceil(repositoryCount / recordsPerPage);
+
+  const handleNext = () => dispatch(setCurrentPageAndDirection(currentPage + 1));
+  const handlePrev = () => dispatch(setCurrentPageAndDirection(currentPage - 1));
 
   return (
     <Box className={styles.pagination}>
@@ -26,10 +29,12 @@ export const TablePagination = () => {
         </Select>
       </Box>
 
-      <Typography variant="body1">1 из {totalPages}</Typography>
+      <Typography variant="body1">
+        {currentPage} из {totalPages}
+      </Typography>
       <Box>
-        <ChevronLeftIcon className={styles.nav_icon} />
-        <ChevronRightIcon className={styles.nav_icon} />
+        <ChevronLeftIcon className={styles.nav_icon} onClick={handlePrev} />
+        <ChevronRightIcon className={styles.nav_icon} onClick={handleNext} />
       </Box>
     </Box>
   );
