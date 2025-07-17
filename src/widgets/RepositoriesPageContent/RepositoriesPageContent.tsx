@@ -6,17 +6,15 @@ import { HelloMessage } from "../../shared/HelloMessage/HelloMessage";
 import { NotFountMessage } from "../../shared/NotFountMessage/NotFountMessage";
 import { LoadingMessage } from "../../shared/LoadingMessage/HelloMessage";
 import { TablePagination } from "../../features/TablePagination/TablePagination";
-import { reposApi, useLazySearchReposQuery } from "../../entities/Repository/api/useSearchReposQuery";
-import { setCurrentPageAndDirection, setPaginationDirection, setRepositories } from "../../entities/Repository/model/repositoriesSlice";
+import { useLazySearchReposQuery } from "../../entities/Repository/api/useSearchReposQuery";
+import { setCurrentPageAndDirection, setRepositories } from "../../entities/Repository/model/repositoriesSlice";
 
 export const RepositoriesPageContent = () => {
-  const [isHelloMessage, setIsHelloMessage] = useState(false);
+  const [isHelloMessage, setIsHelloMessage] = useState(true);
   const { repositories, repositoryName, recordsPerPage, paginationDirection, pageInfo, currentPage } = useSelector((state: RootState) => state.repositories);
   const dispatch = useDispatch();
 
-  const isFetching = false;
-
-  const [triggerSearch, { data }] = useLazySearchReposQuery();
+  const [triggerSearch, { data, isFetching }] = useLazySearchReposQuery();
 
   useEffect(() => {
     if (data) {
@@ -51,6 +49,10 @@ export const RepositoriesPageContent = () => {
       prevRepositoryName.current = repositoryName;
       prevRecordsPerPage.current = recordsPerPage;
       dispatch(setCurrentPageAndDirection(1));
+    }
+
+    if (!repositoryName) {
+      return;
     }
 
     if (paginationDirection === "forward") {
