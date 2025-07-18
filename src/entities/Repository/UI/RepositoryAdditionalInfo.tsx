@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
-import { ChooseRepositoryMessage } from "../../../shared/ChoseRepositoryMessage/ChoseRepositoryMessage";
+import { ChooseRepositoryMessage } from "../../../shared/Messages/ChoseRepositoryMessage";
 import styles from "./styles.module.scss";
 import type { RootState } from "../../../store";
 import { useGetRepositoryByIdQuery } from "../api/RepositoryQueries";
-import { LoadingMessage } from "../../../shared/LoadingMessage/HelloMessage";
+import { LoadingMessage } from "../../../shared/Messages/LoadingMessage";
 import { useMemo } from "react";
 import StarIcon from "@mui/icons-material/Star";
 import { Box, Chip, Typography } from "@mui/material";

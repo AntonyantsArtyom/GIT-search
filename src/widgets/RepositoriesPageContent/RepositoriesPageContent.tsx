@@ -2,14 +2,14 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { RepositoryList } from "../../entities/Repository/UI/RepositoryList";
 import type { RootState } from "../../store";
 import { useDispatch, useSelector } from "react-redux";
-import { HelloMessage } from "../../shared/HelloMessage/HelloMessage";
-import { NotFountMessage } from "../../shared/NotFountMessage/NotFountMessage";
-import { LoadingMessage } from "../../shared/LoadingMessage/HelloMessage";
+import { NotFountMessage } from "../../shared/Messages/NotFountMessage";
+import { LoadingMessage } from "../../shared/Messages/LoadingMessage";
 import { TablePagination } from "../../features/TablePagination/TablePagination";
 import { useLazySearchReposQuery } from "../../entities/Repository/api/RepositoryQueries";
 import { setCurrentPageAndDirection, setRepositories } from "../../entities/Repository/model/repositoriesSlice";
 import { RepositoryAdditionalInfo } from "../../entities/Repository/UI/RepositoryAdditionalInfo";
 import styles from "./styles.module.scss";
+import { HelloMessage } from "../../shared/Messages/HelloMessage";
 
 export const RepositoriesPageContent = () => {
   const [isHelloMessage, setIsHelloMessage] = useState(true);
