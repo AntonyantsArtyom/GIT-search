@@ -21,15 +21,15 @@ export const RepositoryFullInfo = () => {
     }
 
     return (
-      <div className={styles.fullinfo}>
+      <>
         <h2>{repository.name}</h2>
         <p>⭐ {repository.stargazerCount}</p>
         <p>{repository.primaryLanguage?.name || "—"}</p>
         <p>{repository.languages?.nodes.map((lang: any) => lang.name).join(", ") || "—"}</p>
         <p>{repository.licenseInfo?.name || "—"}</p>
-      </div>
+      </>
     );
   }, [isFetching, repositoryDetailsId]);
 
-  return <>{BlockForRender}</>;
+  return <div className={styles.fullinfo}>{BlockForRender}</div>;
 };
