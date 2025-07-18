@@ -21,6 +21,8 @@ export type RepositoryDetails = {
 
 export interface RepositoriesState {
   recordsPerPage: number;
+  orderBy?: "stars" | "forks" | "updated";
+  order: "desc" | "asc";
   currentPage: number;
   paginationDirection: "forward" | "backward";
   repositoryName: string;

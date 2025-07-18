@@ -26,13 +26,9 @@ export const SEARCH_REPOS_QUERY = `
           ... on Repository {
             id
             name
-            url
             stargazerCount
             forkCount
             updatedAt
-            primaryLanguage {
-              name
-            }
           }
         }
       }

@@ -13,7 +13,7 @@ import styles from "./styles.module.scss";
 
 export const RepositoriesPageContent = () => {
   const [isHelloMessage, setIsHelloMessage] = useState(true);
-  const { repositories, repositoryName, recordsPerPage, paginationDirection, pageInfo, currentPage, repositoryDetailsId } = useSelector((state: RootState) => state.repositories);
+  const { repositories, repositoryName, recordsPerPage, paginationDirection, pageInfo, currentPage, repositoryDetailsId, order, orderBy } = useSelector((state: RootState) => state.repositories);
   const dispatch = useDispatch();
 
   const [triggerSearch, { data, isFetching }] = useLazySearchReposQuery();
@@ -41,20 +41,26 @@ export const RepositoriesPageContent = () => {
 
   const prevRepositoryName = useRef(repositoryName);
   const prevRecordsPerPage = useRef(recordsPerPage);
+  const prevOrder = useRef(order);
+  const prevOrderBy = useRef(orderBy);
 
   useEffect(() => {
     if (!repositoryName) {
       return;
     }
 
-    if (prevRepositoryName.current !== repositoryName || prevRecordsPerPage.current !== recordsPerPage) {
+    if (prevRepositoryName.current !== repositoryName || prevRecordsPerPage.current !== recordsPerPage || prevOrder.current !== order || prevOrderBy.current !== orderBy) {
       setCurrentPageAndDirection(1);
       prevRepositoryName.current = repositoryName;
       prevRecordsPerPage.current = recordsPerPage;
+      prevOrder.current = order;
+      prevOrderBy.current = orderBy;
       triggerSearch({
         query: repositoryName,
         first: recordsPerPage,
         after: null,
+        orderBy,
+        order,
       });
       return;
     }
@@ -64,15 +70,19 @@ export const RepositoriesPageContent = () => {
         query: repositoryName,
         first: recordsPerPage,
         after: pageInfo.endCursor,
+        orderBy,
+        order,
       });
     } else if (paginationDirection === "backward") {
       triggerSearch({
         query: repositoryName,
         last: recordsPerPage,
         before: pageInfo.startCursor,
+        orderBy,
+        order,
       });
     }
-  }, [repositoryName, recordsPerPage, currentPage]);
+  }, [repositoryName, recordsPerPage, currentPage, order, orderBy]);
 
   const BlockForRender = useMemo(() => {
     if (isHelloMessage) {

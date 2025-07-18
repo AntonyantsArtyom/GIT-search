@@ -1,13 +1,21 @@
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from "@mui/material";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, TableSortLabel } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../../store";
 import styles from "./styles.module.scss";
-import { setRepositoryDetailsId } from "../model/repositoriesSlice";
+import { setRepositoryDetailsId, setOrder, setOrderField } from "../model/repositoriesSlice";
 
 export const RepositoryList = () => {
-  const { repositories } = useSelector((state: RootState) => state.repositories);
   const dispatch = useDispatch();
+  const { repositories, order, orderBy } = useSelector((state: RootState) => state.repositories);
 
+  const handleSort = (field: "stars" | "forks" | "updated") => {
+    if (orderBy === field) {
+      dispatch(setOrder(order === "asc" ? "desc" : "asc"));
+    } else {
+      dispatch(setOrder("desc"));
+      dispatch(setOrderField(field));
+    }
+  };
   const handleRowClick = (id: string) => dispatch(setRepositoryDetailsId(id));
 
   return (
@@ -19,9 +27,21 @@ export const RepositoryList = () => {
             <TableRow>
               <TableCell>Название</TableCell>
               <TableCell>Язык</TableCell>
-              <TableCell>Число форков</TableCell>
-              <TableCell>Число звезд</TableCell>
-              <TableCell>Дата обновления</TableCell>
+              <TableCell>
+                <TableSortLabel active={orderBy === "forks"} direction={orderBy === "forks" ? order : "desc"} onClick={() => handleSort("forks")}>
+                  Число форков
+                </TableSortLabel>
+              </TableCell>
+              <TableCell>
+                <TableSortLabel active={orderBy === "stars"} direction={orderBy === "stars" ? order : "desc"} onClick={() => handleSort("stars")}>
+                  Число звезд
+                </TableSortLabel>
+              </TableCell>
+              <TableCell>
+                <TableSortLabel active={orderBy === "updated"} direction={orderBy === "updated" ? order : "desc"} onClick={() => handleSort("updated")}>
+                  Дата обновления
+                </TableSortLabel>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

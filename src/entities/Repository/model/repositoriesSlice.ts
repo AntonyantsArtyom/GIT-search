@@ -3,6 +3,8 @@ import type { RepositoriesState, Repository } from "../types/repositiry.types";
 
 const initialState: RepositoriesState = {
   recordsPerPage: 10,
+  orderBy: "stars",
+  order: "desc",
   currentPage: 1,
   repositoryName: "",
   paginationDirection: "forward",
@@ -53,8 +55,14 @@ export const repositoriesSlice = createSlice({
       state.paginationDirection = state.currentPage > action.payload ? "backward" : "forward";
       state.currentPage = action.payload;
     },
+    setOrder: (state, action: PayloadAction<"asc" | "desc">) => {
+      state.order = action.payload;
+    },
+    setOrderField: (state, action: PayloadAction<"stars" | "forks" | "updated">) => {
+      state.orderBy = action.payload;
+    },
   },
 });
 
-export const { setRepositories, setRecordsPerPage, setRepositoryName, setCurrentPageAndDirection, setRepositoryDetailsId } = repositoriesSlice.actions;
+export const { setRepositories, setRecordsPerPage, setRepositoryName, setCurrentPageAndDirection, setRepositoryDetailsId, setOrder, setOrderField } = repositoriesSlice.actions;
 export const repositoriesReducer = repositoriesSlice.reducer;
