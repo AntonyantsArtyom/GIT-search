@@ -10,6 +10,7 @@ import { setCurrentPageAndDirection, setRepositories } from "../../entities/Repo
 import { RepositoryAdditionalInfo } from "../../entities/Repository/UI/RepositoryAdditionalInfo";
 import styles from "./styles.module.scss";
 import { HelloMessage } from "../../shared/Messages/HelloMessage";
+import { Box } from "@mui/material";
 
 export const RepositoriesPageContent = () => {
   const [isHelloMessage, setIsHelloMessage] = useState(true);
@@ -95,13 +96,13 @@ export const RepositoriesPageContent = () => {
       return <NotFountMessage />;
     }
     return (
-      <div className={styles.resositories_content}>
-        <div>
+      <Box className={styles.resositories_content}>
+        <Box className={styles.main_info}>
           <RepositoryList />
           <TablePagination />
-        </div>
+        </Box>
         <RepositoryAdditionalInfo />
-      </div>
+      </Box>
     );
   }, [isHelloMessage, repositories, isFetching, repositoryDetailsId]);
 

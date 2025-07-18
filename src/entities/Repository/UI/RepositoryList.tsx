@@ -21,8 +21,8 @@ export const RepositoryList = () => {
   return (
     <div className={styles.listContainer}>
       <Typography variant="h3">Результаты поиска</Typography>
-      <TableContainer component={Paper}>
-        <Table>
+      <TableContainer className={styles.table} component={Paper}>
+        <Table stickyHeader>
           <TableHead>
             <TableRow>
               <TableCell>Название</TableCell>

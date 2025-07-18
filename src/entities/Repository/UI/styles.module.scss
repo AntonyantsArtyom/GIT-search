@@ -3,6 +3,11 @@
   gap: 24px;
 
   padding: 24px 32px;
+
+  .table {
+    max-height: 400px;
+    overflow-y: scroll;
+  }
 }
 
 .additionalBlock {

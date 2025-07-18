@@ -1,5 +1,14 @@
 .resositories_content {
+  height: 100%;
+
   display: grid;
   grid-template-columns: 1fr 480px;
   grid-template-rows: 1fr;
+
+  .main_info {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 }
