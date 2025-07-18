@@ -39,21 +39,23 @@ export const RepositoriesPageContent = () => {
     }
   }, [isFetching]);
 
-  useEffect(() => {
-    dispatch(setCurrentPageAndDirection(1));
-  }, [repositoryName, recordsPerPage]);
-
   const prevRepositoryName = useRef(repositoryName);
   const prevRecordsPerPage = useRef(recordsPerPage);
 
   useEffect(() => {
-    if (prevRepositoryName.current !== repositoryName || prevRecordsPerPage.current !== recordsPerPage) {
-      prevRepositoryName.current = repositoryName;
-      prevRecordsPerPage.current = recordsPerPage;
-      dispatch(setCurrentPageAndDirection(1));
+    if (!repositoryName) {
+      return;
     }
 
-    if (!repositoryName) {
+    if (prevRepositoryName.current !== repositoryName || prevRecordsPerPage.current !== recordsPerPage) {
+      setCurrentPageAndDirection(1);
+      prevRepositoryName.current = repositoryName;
+      prevRecordsPerPage.current = recordsPerPage;
+      triggerSearch({
+        query: repositoryName,
+        first: recordsPerPage,
+        after: null,
+      });
       return;
     }
 
@@ -61,13 +63,13 @@ export const RepositoriesPageContent = () => {
       triggerSearch({
         query: repositoryName,
         first: recordsPerPage,
-        after: pageInfo.endCursor ?? null,
+        after: pageInfo.endCursor,
       });
     } else if (paginationDirection === "backward") {
       triggerSearch({
         query: repositoryName,
         last: recordsPerPage,
-        before: pageInfo.startCursor ?? null,
+        before: pageInfo.startCursor,
       });
     }
   }, [repositoryName, recordsPerPage, currentPage]);
