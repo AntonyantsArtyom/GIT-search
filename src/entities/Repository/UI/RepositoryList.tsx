@@ -1,8 +1,8 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography, TableSortLabel } from "@mui/material";
+import { setRepositoryDetailsId, setOrder, setOrderField } from "@/entities/Repository/model/repositoriesSlice";
 import { useDispatch, useSelector } from "react-redux";
-import type { RootState } from "../../../store";
+import type { RootState } from "@/store";
 import styles from "./styles.module.scss";
-import { setRepositoryDetailsId, setOrder, setOrderField } from "../model/repositoriesSlice";
 
 export const RepositoryList = () => {
   const dispatch = useDispatch();

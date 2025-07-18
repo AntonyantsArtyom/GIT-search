@@ -1,8 +1,8 @@
 import { Box, Button, TextField } from "@mui/material";
 import { useState, type ChangeEventHandler } from "react";
-import styles from "./styles.module.scss";
+import { setRepositoryName } from "@/entities/Repository/model/repositoriesSlice";
 import { useDispatch } from "react-redux";
-import { setRepositoryName } from "../../entities/Repository/model/repositoriesSlice";
+import styles from "./styles.module.scss";
 
 export const RepositorySearch = () => {
   const dispatch = useDispatch();

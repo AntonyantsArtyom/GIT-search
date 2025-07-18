@@ -1,6 +1,6 @@
 import { AppBar, Toolbar } from "@mui/material";
+import { RepositorySearch } from "@/features/RepositorySearch/RepositorySearch";
 import styles from "./styles.module.scss";
-import { RepositorySearch } from "../../features/RepositorySearch/RepositorySearch";
 
 export const Header = () => {
   return (

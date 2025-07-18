@@ -1,12 +1,12 @@
 import { useSelector } from "react-redux";
-import { ChooseRepositoryMessage } from "../../../shared/Messages/ChoseRepositoryMessage";
-import styles from "./styles.module.scss";
-import type { RootState } from "../../../store";
-import { useGetRepositoryByIdQuery } from "../api/RepositoryQueries";
-import { LoadingMessage } from "../../../shared/Messages/LoadingMessage";
+import { ChooseRepositoryMessage } from "@/shared/Messages/ChoseRepositoryMessage";
+import type { RootState } from "@/store";
+import { useGetRepositoryByIdQuery } from "@/entities/Repository/api/RepositoryQueries";
+import { LoadingMessage } from "@/shared/Messages/LoadingMessage";
 import { useMemo } from "react";
 import StarIcon from "@mui/icons-material/Star";
 import { Box, Chip, Typography } from "@mui/material";
+import styles from "./styles.module.scss";
 
 export const RepositoryAdditionalInfo = () => {
   const { repositoryDetailsId } = useSelector((state: RootState) => state.repositories);

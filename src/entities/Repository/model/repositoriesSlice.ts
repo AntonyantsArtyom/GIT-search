@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import type { RepositoriesState, Repository } from "../types/repositiry.types";
+import type { RepositoriesState, Repository } from "@/entities/Repository/types/repositiry.types";
 
 const initialState: RepositoriesState = {
   recordsPerPage: 10,

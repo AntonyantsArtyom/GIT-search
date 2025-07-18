@@ -1,7 +1,7 @@
-import { api } from "../../../api";
-import { SEARCH_REPOS_QUERY } from "./queries/searchRepos.query";
-import { GET_REPOSITORY_BY_ID } from "./queries/getRepositoryById.query";
-import type { GetRepositoryByIdResponse, SearchRepositoriesResponse } from "../types/repositiry.types";
+import { api } from "@/api";
+import type { GetRepositoryByIdResponse, SearchRepositoriesResponse } from "@/entities/Repository/types/repositiry.types";
+import { SEARCH_REPOS_QUERY } from "@/entities/Repository/api/queries/searchRepos.query";
+import { GET_REPOSITORY_BY_ID } from "@/entities/Repository/api/queries/getRepositoryById.query";
 
 export const repositoriesApi = api.injectEndpoints({
   endpoints: (build) => ({

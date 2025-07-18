@@ -1,10 +1,10 @@
 import { Typography, Select, MenuItem, Box, type SelectChangeEvent } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import styles from "./styles.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import type { RootState } from "../../store";
-import { setCurrentPageAndDirection, setRecordsPerPage } from "../../entities/Repository/model/repositoriesSlice";
+import { setCurrentPageAndDirection, setRecordsPerPage } from "@/entities/Repository/model/repositoriesSlice";
+import type { RootState } from "@/store";
+import styles from "./styles.module.scss";
 
 export const TablePagination = () => {
   const dispatch = useDispatch();

@@ -1,16 +1,16 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { RepositoryList } from "../../entities/Repository/UI/RepositoryList";
-import type { RootState } from "../../store";
+import { RepositoryList } from "@/entities/Repository/UI/RepositoryList";
+import type { RootState } from "@/store";
 import { useDispatch, useSelector } from "react-redux";
-import { NotFountMessage } from "../../shared/Messages/NotFountMessage";
-import { LoadingMessage } from "../../shared/Messages/LoadingMessage";
-import { TablePagination } from "../../features/TablePagination/TablePagination";
-import { useLazySearchReposQuery } from "../../entities/Repository/api/RepositoryQueries";
-import { setCurrentPageAndDirection, setRepositories } from "../../entities/Repository/model/repositoriesSlice";
-import { RepositoryAdditionalInfo } from "../../entities/Repository/UI/RepositoryAdditionalInfo";
-import styles from "./styles.module.scss";
-import { HelloMessage } from "../../shared/Messages/HelloMessage";
+import { NotFountMessage } from "@/shared/Messages/NotFountMessage";
+import { LoadingMessage } from "@/shared/Messages/LoadingMessage";
+import { TablePagination } from "@/features/TablePagination/TablePagination";
+import { useLazySearchReposQuery } from "@/entities/Repository/api/RepositoryQueries";
+import { setCurrentPageAndDirection, setRepositories } from "@/entities/Repository/model/repositoriesSlice";
+import { RepositoryAdditionalInfo } from "@/entities/Repository/UI/RepositoryAdditionalInfo";
+import { HelloMessage } from "@/shared/Messages/HelloMessage";
 import { Box } from "@mui/material";
+import styles from "./styles.module.scss";
 
 export const RepositoriesPageContent = () => {
   const [isHelloMessage, setIsHelloMessage] = useState(true);
