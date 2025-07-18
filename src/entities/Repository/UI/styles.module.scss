@@ -5,6 +5,42 @@
   padding: 24px 32px;
 }
 
-.fullinfo {
+.additionalBlock {
   background: #f2f2f2;
+}
+
+.information {
+  padding: 24px;
+  display: grid;
+  gap: 16px;
+
+  .languages {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .starsAndLanguage {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .mainLanguage {
+    background: #2196f3;
+    color: #fff;
+  }
+
+  .stars {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+    font-size: 14px;
+
+    svg {
+      color: #ffb400;
+      position: relative;
+      top: -2px;
+    }
+  }
 }
