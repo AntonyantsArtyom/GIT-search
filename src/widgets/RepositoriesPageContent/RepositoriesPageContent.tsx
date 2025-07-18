@@ -8,8 +8,8 @@ import { LoadingMessage } from "../../shared/LoadingMessage/HelloMessage";
 import { TablePagination } from "../../features/TablePagination/TablePagination";
 import { useLazySearchReposQuery } from "../../entities/Repository/api/RepositoryQueries";
 import { setCurrentPageAndDirection, setRepositories } from "../../entities/Repository/model/repositoriesSlice";
+import { RepositoryAdditionalInfo } from "../../entities/Repository/UI/RepositoryAdditionalInfo";
 import styles from "./styles.module.scss";
-import { RepositoryFullInfo } from "../../entities/Repository/UI/RepositoryFullInfo";
 
 export const RepositoriesPageContent = () => {
   const [isHelloMessage, setIsHelloMessage] = useState(true);
@@ -90,7 +90,7 @@ export const RepositoriesPageContent = () => {
           <RepositoryList />
           <TablePagination />
         </div>
-        <RepositoryFullInfo />
+        <RepositoryAdditionalInfo />
       </div>
     );
   }, [isHelloMessage, repositories, isFetching, repositoryDetailsId]);

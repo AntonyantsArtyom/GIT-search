@@ -8,7 +8,7 @@ import { useMemo } from "react";
 import StarIcon from "@mui/icons-material/Star";
 import { Box, Chip, Typography } from "@mui/material";
 
-export const RepositoryFullInfo = () => {
+export const RepositoryAdditionalInfo = () => {
   const { repositoryDetailsId } = useSelector((state: RootState) => state.repositories);
 
   const { data, isFetching } = useGetRepositoryByIdQuery({ id: repositoryDetailsId! }, { skip: !repositoryDetailsId });
