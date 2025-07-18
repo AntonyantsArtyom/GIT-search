@@ -17,7 +17,7 @@ export const RepositoriesPageContent = () => {
   const { repositories, repositoryName, recordsPerPage, paginationDirection, pageInfo, currentPage, repositoryDetailsId, order, orderBy } = useSelector((state: RootState) => state.repositories);
   const dispatch = useDispatch();
 
-  const [triggerSearch, { data, isFetching }] = useLazySearchReposQuery();
+  const [triggerSearch, { data, isFetching, error }] = useLazySearchReposQuery();
 
   useEffect(() => {
     if (data) {
@@ -40,22 +40,29 @@ export const RepositoriesPageContent = () => {
     }
   }, [isFetching]);
 
+  useEffect(() => {
+    if (error) {
+      alert("Произошла ошибка при загрузке списка репозиториев");
+    }
+  }, [error]);
+
   const prevRepositoryName = useRef(repositoryName);
   const prevRecordsPerPage = useRef(recordsPerPage);
   const prevOrder = useRef(order);
   const prevOrderBy = useRef(orderBy);
 
   useEffect(() => {
-    if (!repositoryName) {
-      return;
-    }
+    if (!repositoryName) return;
 
-    if (prevRepositoryName.current !== repositoryName || prevRecordsPerPage.current !== recordsPerPage || prevOrder.current !== order || prevOrderBy.current !== orderBy) {
+    const changed = prevRepositoryName.current !== repositoryName || prevRecordsPerPage.current !== recordsPerPage || prevOrder.current !== order || prevOrderBy.current !== orderBy;
+
+    if (changed) {
       dispatch(setCurrentPageAndDirection(1));
       prevRepositoryName.current = repositoryName;
       prevRecordsPerPage.current = recordsPerPage;
       prevOrder.current = order;
       prevOrderBy.current = orderBy;
+
       triggerSearch({
         query: repositoryName,
         first: recordsPerPage,
@@ -86,15 +93,10 @@ export const RepositoriesPageContent = () => {
   }, [repositoryName, recordsPerPage, currentPage, order, orderBy]);
 
   const BlockForRender = useMemo(() => {
-    if (isHelloMessage) {
-      return <HelloMessage />;
-    }
-    if (isFetching) {
-      return <LoadingMessage />;
-    }
-    if (!isHelloMessage && !repositories.length) {
-      return <NotFountMessage />;
-    }
+    if (isHelloMessage) return <HelloMessage />;
+    if (isFetching) return <LoadingMessage />;
+    if (!isHelloMessage && !repositories.length) return <NotFountMessage />;
+
     return (
       <Box className={styles.resositories_content}>
         <Box className={styles.main_info}>

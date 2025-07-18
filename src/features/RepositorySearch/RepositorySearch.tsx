@@ -1,4 +1,4 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, TextField, Tooltip } from "@mui/material";
 import { useState, type ChangeEventHandler } from "react";
 import { setRepositoryName } from "@/entities/Repository/model/repositoriesSlice";
 import { useDispatch } from "react-redux";
@@ -11,12 +11,18 @@ export const RepositorySearch = () => {
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) => setInputValue(e.target.value.trim());
   const handleSearch = () => dispatch(setRepositoryName(inputValue));
 
+  const isInputEmpty = inputValue === "";
+
   return (
     <Box className={styles.search}>
       <TextField autoComplete="off" id="repository" classes={{ root: styles.input }} placeholder="Введите поисковый запрос" value={inputValue} onChange={handleChange} />
-      <Button className={styles.button} variant="contained" onClick={handleSearch}>
-        ИСКАТЬ
-      </Button>
+      <Tooltip title={isInputEmpty ? "Введите запрос для поиска" : ""} arrow disableHoverListener={!isInputEmpty}>
+        <span>
+          <Button className={styles.button} variant="contained" onClick={handleSearch} disabled={isInputEmpty}>
+            ИСКАТЬ
+          </Button>
+        </span>
+      </Tooltip>
     </Box>
   );
 };

@@ -11,15 +11,22 @@ import styles from "./styles.module.scss";
 export const RepositoryAdditionalInfo = () => {
   const { repositoryDetailsId } = useSelector((state: RootState) => state.repositories);
 
-  const { data, isFetching } = useGetRepositoryByIdQuery({ id: repositoryDetailsId! }, { skip: !repositoryDetailsId });
+  const { data, isFetching, error } = useGetRepositoryByIdQuery({ id: repositoryDetailsId! }, { skip: !repositoryDetailsId });
+
   const repository = data?.data?.node;
 
   const BlockForRender = useMemo(() => {
     if (!repositoryDetailsId) {
       return <ChooseRepositoryMessage />;
     }
+
     if (isFetching) {
       return <LoadingMessage />;
+    }
+
+    if (error) {
+      alert("Произошла ошибка при загрузке данных репозитория");
+      return null;
     }
 
     return (
@@ -40,7 +47,7 @@ export const RepositoryAdditionalInfo = () => {
         <Typography variant="body1">{repository?.licenseInfo?.name || "—"}</Typography>
       </Box>
     );
-  }, [isFetching, repositoryDetailsId]);
+  }, [isFetching, error, repositoryDetailsId]);
 
   return <div className={styles.additionalBlock}>{BlockForRender}</div>;
 };
