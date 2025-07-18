@@ -51,7 +51,7 @@ export const RepositoriesPageContent = () => {
     }
 
     if (prevRepositoryName.current !== repositoryName || prevRecordsPerPage.current !== recordsPerPage || prevOrder.current !== order || prevOrderBy.current !== orderBy) {
-      setCurrentPageAndDirection(1);
+      dispatch(setCurrentPageAndDirection(1));
       prevRepositoryName.current = repositoryName;
       prevRecordsPerPage.current = recordsPerPage;
       prevOrder.current = order;
