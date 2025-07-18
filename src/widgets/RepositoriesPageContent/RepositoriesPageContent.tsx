@@ -21,7 +21,7 @@ export const RepositoriesPageContent = () => {
   useEffect(() => {
     if (data) {
       const { edges, repositoryCount, pageInfo } = data.data.search;
-      const repositories = edges.map((edge: any) => edge.node);
+      const repositories = edges.map((edge) => edge.node);
 
       dispatch(
         setRepositories({

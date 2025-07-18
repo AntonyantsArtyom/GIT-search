@@ -24,20 +24,20 @@ export const RepositoryAdditionalInfo = () => {
 
     return (
       <Box className={styles.information}>
-        <Typography variant="h4">{repository.name}</Typography>
+        <Typography variant="h4">{repository?.name}</Typography>
         <Box className={styles.starsAndLanguage}>
-          <Chip className={styles.mainLanguage} color="primary" label={repository.primaryLanguage?.name || "—"} variant="outlined" />
+          <Chip className={styles.mainLanguage} color="primary" label={repository?.primaryLanguage?.name || "—"} variant="outlined" />
           <Box className={styles.stars}>
             <StarIcon />
-            <Typography variant="body1">{repository.stargazerCount}</Typography>
+            <Typography variant="body1">{repository?.stargazerCount}</Typography>
           </Box>
         </Box>
         <Box className={styles.languages}>
-          {repository.languages?.nodes.map((lang: any) => (
-            <Chip label={lang.name} variant="outlined" />
+          {repository?.languages?.nodes.map((lang) => (
+            <Chip key={lang.name} label={lang.name} variant="outlined" />
           ))}
         </Box>
-        <Typography variant="body1">{repository.licenseInfo?.name || "—"}</Typography>
+        <Typography variant="body1">{repository?.licenseInfo?.name || "—"}</Typography>
       </Box>
     );
   }, [isFetching, repositoryDetailsId]);

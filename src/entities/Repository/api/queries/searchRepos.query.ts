@@ -29,6 +29,9 @@ export const SEARCH_REPOS_QUERY = `
             stargazerCount
             forkCount
             updatedAt
+            primaryLanguage {
+              name
+            }
           }
         }
       }

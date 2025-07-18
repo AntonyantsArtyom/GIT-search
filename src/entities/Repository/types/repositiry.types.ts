@@ -1,7 +1,6 @@
 export type Repository = {
   id: string;
   name: string;
-  language: string;
   stargazerCount: number;
   forkCount: number;
   updatedAt: string;
@@ -35,5 +34,51 @@ export interface RepositoriesState {
     hasPreviousPage: boolean;
     startCursor: string | null;
     endCursor: string | null;
+  };
+}
+
+export interface RepositorySearchNode {
+  node: {
+    id: string;
+    name: string;
+    stargazerCount: number;
+    language?: string;
+    forkCount: number;
+    updatedAt: string;
+  };
+}
+
+export interface SearchRepositoriesResponse {
+  data: {
+    search: {
+      repositoryCount: number;
+      pageInfo: {
+        startCursor: string | null;
+        endCursor: string | null;
+        hasNextPage: boolean;
+        hasPreviousPage: boolean;
+      };
+      edges: RepositorySearchNode[];
+    };
+  };
+}
+
+export interface GetRepositoryByIdResponse {
+  data: {
+    node: {
+      name: string;
+      stargazerCount: number;
+      primaryLanguage?: {
+        name: string;
+      } | null;
+      languages: {
+        nodes: {
+          name: string;
+        }[];
+      };
+      licenseInfo?: {
+        name: string;
+      } | null;
+    };
   };
 }

@@ -1,11 +1,12 @@
 import { api } from "../../../api";
 import { SEARCH_REPOS_QUERY } from "./queries/searchRepos.query";
 import { GET_REPOSITORY_BY_ID } from "./queries/getRepositoryById.query";
+import type { GetRepositoryByIdResponse, SearchRepositoriesResponse } from "../types/repositiry.types";
 
 export const repositoriesApi = api.injectEndpoints({
   endpoints: (build) => ({
     searchRepos: build.query<
-      any,
+      SearchRepositoriesResponse,
       {
         query: string;
         first?: number;
@@ -34,7 +35,7 @@ export const repositoriesApi = api.injectEndpoints({
         };
       },
     }),
-    getRepositoryById: build.query<any, { id: string }>({
+    getRepositoryById: build.query<GetRepositoryByIdResponse, { id: string }>({
       query: ({ id }) => ({
         url: "",
         method: "POST",
