@@ -24,8 +24,6 @@ yarn install
 VITE_GITHUB_TOKEN=ваш_персональный_токен
 ```
 
-Если у вас его ещё нет — создайте на [https://github.com/settings/tokens](https://github.com/settings/tokens
-
 ### 4. Запустить приложение
 
 ```bash
