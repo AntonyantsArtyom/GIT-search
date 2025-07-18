@@ -50,8 +50,8 @@ export const repositoriesSlice = createSlice({
       state.repositoryDetailsId = action.payload;
     },
     setCurrentPageAndDirection: (state, action: PayloadAction<number>) => {
-      state.currentPage = action.payload;
       state.paginationDirection = state.currentPage > action.payload ? "backward" : "forward";
+      state.currentPage = action.payload;
     },
   },
 });
